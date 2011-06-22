@@ -3,45 +3,48 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Bonjour! Welcome to persy's documentation!
-=============================================
-persy is an automated incremental backup tool for your personal files and folders.
-It also has the ability to synchronize your folders over multiple machines.
-So, it is comparable to dropbox_ and ubuntuone_ but with one major difference: 
-you dont need a user account in a cloud in the internet where you dont really know where your stuff is and who may have access to it. 
+Bienvenue sur la documentation de Persy ! 
+=========================================
+Persy est un outil de sauvegarde incrémentale automatique pour vos fichiers et dossiers personnels. 
+Il a également la possibilité de synchroniser vos dossiers sur plusieurs machines. 
+Ainsi, il est comparable à dropbox_ ou à ubuntuone_, mais avec une différence majeure :
+vous n'avez pas besoin d'ouvrir un compte utilisateur dans un Cloud sur Internet où vous ne saurez pas vraiment où vos données sont stockées et qui peut y avoir accès.
 
-With persy, you control every step and station in the process but persy tries to keep most of the annoying things out of the way.
-If you just want to backup your files and save nearly every step you do, run persy and add your folders to persy in the "backup" settings tab. 
-If you want to sychronize your files, all you need is a server with ssh and git (in your local network or remote in the internet doesnt matter). 
-I have a old pc here in my local network for example. Give persy the server data it needs, follow the configuration, enable remote synchronization and there you go!
+Avec Persy, vous pouvez contrôler le processus à chaque étape et dans chaque machine, mais Persy essaiera de vous éviter autant que possible les détails ennuyeux.
+Si vous voulez juste faire une sauvegarde de vos fichiers et conserver quasiment toutes les étapes de votre travail, lancer Persy et indiquez lui les dossiers à préserver dans "à sauvegarder", sur l'onglet Paramètres. 
+Si vous voulez sychroniser vos fichiers, vous n'avez besoin que d'un serveur avec ssh et git (dans votre réseau local ou à distance sur Internet, c'est sans importance). 
+J'ai un vieux PC ici dans mon réseau local par exemple.
+Indiquez à Persy les informations relatives au serveur dont il a besoin, procédez à la configuration, activez la synchronisation à distance et vous pouvez y allez !
 
-If you are not looking at the online version of the documentation, you can find the most recent version at: http://persy.digitalkultur.net
+Si vous ne consultez pas la version en ligne de la documentation, vous pouvez en trouver la version la plus récente à l'adresse: http://persy.digitalkultur.net
 
 .. note::
 
-   persy is considered feature complete. I will fix bugs but not add new features. If you think persy is missing anything or want to contribute just write me a message.
-
+   Persy est considéré comme fonctionnellement complet. Je vais corriger les bugs, mais pas ajouter de nouvelles fonctionnalités. Si vous pensez que quelque chose est manquant ou si vous voulez contribuer à Persy, il suffit de m'écrire un message.
+   
 .. warning::
 
-   if something blows up, you might need some experience with git. If you are happy with solving a conflict in git: go ahead and have fun with persy! 
+   Si quelque chose se passe mal, vous pourriez avoir besoin un peu d'expérience avec git. Si vous êtes à l'aise dans la résolution d'un conflit dans git, allez-y et amusez-vous avec Persy ! 
 
-Get persy
+Obtenez Persy
 -----------------
-
-If you want to get the latest version of persy, take a look at the :ref:`installation`-section!
-There you will find links to the ppa for Ubunu, the source package and maybe more!
+Si vous souhaitez obtenir la dernière version de Persy, Consultez la section :ref:`installation`. Vous y trouverez les liens vers les PPA pour Ubuntu, le paquet des sources et peut-être plus !
 
 
-Contents
+Contenu
 ------------------
 
 .. toctree::
    :maxdepth: 2
    
    installation
-   usage
-   troubleshooting
-   trivia
+
+Indices and tables
+------------------
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
 
 
 .. _dropbox: https://www.dropbox.com
