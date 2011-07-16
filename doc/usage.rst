@@ -1,36 +1,36 @@
 Usage
 =================================
 
-How to use persy as a normal human beeing. (if any of these explanations are not "human" enough, tell me)
+Comment utiliser Persy pour un être humain normal (si ces explications ne vous semblent pas assez “humaines”, prévenez moi).
 
-Quickstart
+Guide rapide
 ---------------------------------
 
-For a quick start, just run persy
+Pour faire simple, démarrez juste Persy :
 
 .. code-block:: bash
   :linenos:
 
    persy
 
-persy can also be started from the the normal startup menu in the "accessory" category.
-Now you have to add directories to persy. You can do this in the settings menu into the "backup" tab (take a look at the screenshot).
+Persy peut également être lancé depuis le menu de démarrage, dans la catégorie des accessoires.
+Vous pouvez maintenant ajouter des répertoires à synchroniser dans Persy. Pour faire cela, allez dans le menu des paramètres, choix “Sauvegarde” (voir l'image ci dessous)
 
 .. image:: images/persy_settings_quickstart.png
 
-The watched directories and files can be in absolute format (starts with / ) or relative to the userhome.
+Les répertoires synchronisés et les fichiers surveillés doivent être indiqués avec leur chemin absolu (commençant par /) ou avec le chemin relatif depuis votre dossier personnel.
 
-After you added the directories (and maybe lookt at the other configuration options too) you might want to actually start persy. just rightclick on the status icon and check the "start/stop persy" checkbox.
+Après avoir paramétré les répertoires à synchroniser (et éventuellement passé en revue les autres options de configuration), vous voudrez démarrer la synchronisation par Persy. Pour cela, faite juste un clic droit sur l'icône de la barre d'état et cochez le choix "Démarrer/Arrêter Persy".
 
 .. image:: images/start_persy.png
 
-Thats it, persy should be running by now and backup your files.
+C'est tout; à partir de maintenant, Persy fonctionne et sauvegarde vos fichiers.
 
 
-Quickstart on the commandline
+Guide rapide en ligne de commande
 ---------------------------------
 
-You can also do this configuration in the commandline. This is recommended for experienced users only and is not necessary if you configured persy with the settings menu.
+Vous pouvez également réaliser cette configuration en ligne de commande. C'est une méthode recommandée uniquement pour les utilisateurs expérimentés, et il n'est pas nécessaire de procéder ainsi si vous avez configuré Persy par son menu de paramétrage.
 
 .. code-block:: bash
   :linenos:
@@ -40,44 +40,39 @@ You can also do this configuration in the commandline. This is recommended for e
    persy --config --add_dir=DIR
    persy --start
 
-You can configure your desktop environment to execute persy at login.
+Vous pouvez configurer votre environnement de bureau pour qu'il lance Persy à la connexion.
 
 
-Setup for syncing and/or using a remote backup
-----------------------------------------------
+Configuration pour un dépôt sur un serveur distant
+--------------------------------------------------
 
-If you want to sync or backup your files on a remote server, you have to enable a public key authentication for the server. No extra persy serversoftware is required as you can see in this illustration:
+Si vous souhaitez synchroniser ou sauvegarder vos fichiers sur un dépôt d'un serveur distant, vous devez activer une authentification à clé publique sur le serveur (plus d'information sur progit.org_). Aucun module logiciel 'serveur' de Persy n'est nécessaire comme le montre cette illustration :
 
 .. image:: images/sync.png
 
-The server just needs a ssh server with public key authentication and the git-core package.
-You only have to configure the client computer with persy installed.
+Le serveur distant à juste besoin de disposer d'un serveur ssh avec une authentification à clé publique et du paquet git-core.
 
-Setup a remote server and connect the first persy instance to it
-________________________________________________________________
+Vous avez simplement à configurer Persy sur le poste client.
 
-The normal (cli) workflow with a **blank remote Server** and an **already initialized local repository** is:
+###Configuration d'un dépôt distant et connexion du premier client Persy
 
+L'enchainement normal avec un **serveur distant vierge** et un **dépôt local déjà initialisé** est le suivant :
 
 .. code-block:: bash
   :linenos:
 
-   persy --config --hostname=SERVERNAME
+   persy --config --hostname=SERVER
    persy --config --path=PATH
    persy --initRemote
    persy --start
 
-Persy will try to connect to the server with ssh and uses public key authentification. You can test this and try the connection yourself ("ssh SERVERNAME" from the commandline. public key authentification is correctly set up if you do not need to provide a password for a successfull login) or use the environment tests in the persy config dialoge. 
-If the connection works, persy will try to create the destinationfolder (PATH) and greats a git repository in this location. git has to be installed on the server. 
+###Configuration d'un second client Persy à un dépôt existant
 
-Connect a second persy instance to a server
-___________________________________________
-
-The normal workflow with a **already initialized remote Server** and **no local repository**.
+L'enchainement normal avec un **serveur distant déjà initialisé** et **sans dépôt local** est le suivant :
 
 .. warning::
 
-   the synced directories should be empty before the sync. i had some problems with already existing files. you can start a sync and then add new files to the synced directory.
+   Les répertoires locaux doivent être vides pour lancer la synchronisation. Il y a quelques problèmes avec les fichiers pré-existants. Vous devez démarrer la synchronisation puis ajouter des fichiers dans le répertoire.
 
 .. code-block:: bash
   :linenos:
@@ -90,66 +85,70 @@ The normal workflow with a **already initialized remote Server** and **no local 
    persy --syncwithremote
    persy --start
 
-
 Limitations
 --------------------------------------------
 
-Persy does have some limitations in its usage. Some of them are just "good-to-know" and some may break the usefullness for you.
+Persy présente certaines limitation de son utilisation. Certaine sont justes 'bonnes à savoir', d'autres peuvent perturber l'utilisation. que vous souhaitez en faire.
 
- *   persy can not track empty folders. This is a shortcoming in git but will hopefully fixed in a future version of it.  
- *   git repositores inside of watched folders can not be tracked. This is also an issue in git and the way git is handeling git repositories in git repositories("submodules"). If YOU have an idea how to fix this without a "hack" please feel free to contact me. 
+        Persy ne peut pas synchroniser des répertoire vides. C'est un problème interne à **git** qui sera, j'espère, réglé dans une future version.
+        Les répertoires propres à git inclus dans l'arborescence synchronisée ne peuvent pas être eux-mêmes synchronisé. C'est aussi un problème lié à la façon dont **git** gère les dépôts dans les dépôts (“sous-modules”). Si VOUS avez une idée de solution à ce problème qui n'induise pas de “hack”, n'hésitez pas à me contacter.
 
-Advanced Usage
+
+Utilisation avancée
 --------------------------------------------
 
-You can use persy without a centralized server to which every clients connects and performes the synchronization (like in the illustration image above). You can also run persy without a second computer at all and synchronize with other parts(repositories) on the filesystem. Right now, this is not the intended use and i will not cover this in the cli or the upcomming gui. You can however configure this in the git configuration for persy ~/.persy/git/config and i try to take care of the internal implementation. If you have questions regarding esoteric setups, feel free to mail me.
+Vous pouvez utiliser Persy sans serveur central auprès duquel tous les clients se synchronisent (voir l'illustration ci dessus). Vous pouvez aussi utiliser Persy sur une seule machine, pour synchroniser deux répertoires (dépôts) sur des systèmes de fichiers différents. Toutefois, ce n'est pas l'usage principal et il ne sera pas développé dans le client logiciel ou son interface.
+Vous pouvez toutefois configurer cela dans le fichier de paramétrage de git pour Persy (~/.persy/git/config) et je ferais attention à ne pas gêner cela dans le code.
+Si vous avez des questions relatives à ces configurations spéciales, n'hésitez pas à me contacter. 
 
 
-Usage with an SVN Backend (experimental)
---------------------------------------------
+Utilisation avec un serveur SVN (experimental)
+-----------------------------------------------
 
-You dont have use git to synchronize with to a remote host. SVN is another may to connect from your local computer to a remote server. persy will use git-svn as a bridge between the client (git) and the server (svn).  
+Vous n'êtes pas obligé d'utiliser git pour vous synchroniser avec votre serveur distant. SVN est une autre solution pour vous y connecter. Persy utilise **git-svn** comme pont entre le client (git) et le serveur (svn).
 
 .. warning::
 
-   This is not very well tested and just exists "because its possible". This works but the guide does have an error in the setup for git-svn. I do not use this setup right now and if you manage to get it to work, i will update this section
+   Ce n'est pas fortement testé et cela existe "juste parce que c'est possible".
 
-Remove the .persy directory in your homefolder. 
-Start and Stop persy to generate the needed config files.
-Remove the git directory in .persy/git
-Alter .persy/config and add "use_gitsvn = True" to the remote section. 
-Initialize persy manually:
+Effacez le répertoire .persy dans votre Dossier personnel.
+Faites un arrêt/démarrage de Persy pour régénérer les fichiers de configuration.
+Effacez le répertoire du dépôt git dans .persy/git
+Éditer le fichier .persy/config et ajoutez "use_gitsvn = True" à la section 'distant'
+Initialisez Persy manuellement :
 
 .. code-block:: bash
   :linenos:
 
-   . persy --setenv # manual mode for persy
+   . persy --setenv # mode manuel pour persy
    git svn init <SVNREPOSITORYURL>
    git checkout -b local-svn remotes/git-svn
 
-Start persy, enable remote synchronization and see if it works!
-Because of the nature of this quite unsupported feature, most of the settings on the remote settings tab are obsolete from now on.
+Démarrez Persy, autorisez la synchronisation avec le dépot distant et voyez si ça marche !
+A cause de la nature quasiment non-supporté de cette fonctionnalité, beaucoup de paramètres de Persy deviennent inopérant ou sans objet.
 
 
-States in persy
+L'indicateur d'état de Persy
 --------------------------------------------
 
-When running persy, its possible to run in the following states. A state is a simplification of the status of the file backup and synchronization.
-Most of them are selfexplanatory.
+Pendant son fonctionnement, Persy peut passer par divers états. Un état est une représentation simplifiée du processus de synchronisation et de sauvegarde des fichiers.
+La plupart ont une signification évidente.
 
 
 .. csv-table:: 
-  :header: "icon", "state"
+  :header: "Icône", "Etat"
   :widths: 150, 400
 
 
-  |persy_idle_mono.svg|, "idle, persy is not running"
-  |persy_untracked_mono.svg|, "local changes exist that are not saved in the local repository"
-  |persy_unsynced_mono.svg|, "all local changes are saved"
-  |persy_ok_mono.svg|, "all local changes are saved AND these changes are pushed to the remote server"
-  |persy_warn_mono.svg|, "warning!"
-  |persy_error_mono.svg|, "error!"
+  |persy_idle_mono.svg|, "Dormant; Persy ne fonctionne pas"
+  |persy_untracked_mono.svg|, "Il existe des modifications qui ne sont même pas sauvegardées dans le dépôt local."
+  |persy_unsynced_mono.svg|, "Toutes les modifications sont sauvegardées dans le dépôt local."
+  |persy_ok_mono.svg|, "Toutes les modifications sont sauvegardées dans le dépôt local ET ont été répercutées sur le dépôt distant."
+  |persy_warn_mono.svg|, "Attention !"
+  |persy_error_mono.svg|, "Erreur !"
 
+
+.. _progit.org: http://progit.org/book/fr/ch4-3.html
 
 
 .. |persy_idle_mono.svg| image:: images/icons/ubuntu-mono-dark/scalable/apps/persy_idle.svg

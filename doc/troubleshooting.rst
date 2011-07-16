@@ -1,50 +1,49 @@
-Troubleshooting
+Dépannage
 ===============================
 
-When something is odd or just not working, please take your time to write a bug at launchpad_ to make persy better!
+Si vous observer quelque chose de bizarre, ou simplement qui ne fonctionne pas, prenez s'il vous plaît le temps de rapporter un bug sur launchpad_ pour permettre d'améliorer Persy !
 
-More informations and quick help
+Plus d'informations et aide rapide
 -----------------------------------
 
-If you just want a more detailed output of the stuff persy does, start persy with the ``--verbose`` command line argument.
-This can give valueable information about whats happening.
+Si vous souhaitez disposer d'informations détaillées sur ce que fait Persy, lancez le en ligne de commande avec l'option ``--verbose``.
+Cela peut vous permettre des informations intéressance sur ce qui arrive.
 
 .. code-block:: bash
   :linenos:
 
    persy --verbose
 
-When something with the synchronization is not working, you can test your settings and environment with 4 quick tests on the synchronization tab on the settings menu. 
-A green dog is ok, orange is an error state. If an error does occure, the error message is displayed as a notification. 
-The corresponding action to a test MAY fix a problem. Nothing bad will happen so you can always give it a try.
+Quand quelque chose ne fonctionne pas avec la synchronisation, vous pouvez tester vos paramètres et votre environnement avec 4 tests rapides disponible sur l'onglet synchronisation du menu de configuration.
+Un chien vert indique que tout va bien, un chien orange indique un problème. Si une erreur est survenue, le message d'erreur est affiché en tant que notification.
+L'action qui correspond à un test PEUT résoudre le problème. Comme rien de grave ne peut se produire, vous pouvez toujours essayer.
 
 
-Advanced and manual troubleshooting
+Dépannage avancée et manuel
 ------------------------------------
 
-To really check whats happening OR do some manual stuff with the git repository, use the a development/debugging Option ``--setenv`` (only for advanced users, notice the dot in the beginning). 
+Pour vérifier vraiment ce qui se passe OU gérer manuellement certaine affires avec le dépôt git, vous pouvez utiliser l'option du mode développement/débogage ``--setenv`` (réservé uniquement aux utilisateurs avancés, notez le point au début de la ligne de commande).
 
 .. code-block:: bash
   :linenos:
 
    . persy --setenv
 
-This sets the environment variables (``GIT_DIR``, ``GIT_WORK_TREE``) of the parent shell in a way that all git commands execute in the parent shell are operating on the persy git repository. 
-Take a look at the help message when using this option.
-This is useful if you want to start your own git viewer or want to mess with your data. 
-
+Ceci définit les variables d'environnement (``GIT_DIR``, ``GIT_WORK_TREE``) du shell parent de façon à ce que toutes les commandes git exécutées dans le shell parent concernent le dépôt git de Persy. 
+Lisez les messages d'aide lorsque vous utilisez cette option. 
+Ceci est utile si vous voulez utiliser votre propre visionneuse git ou manipuler vos données.
 
 .. _launchpad: https://launchpad.net/persy
 
-Working with large repositories
+Travailler avec de grands dépôts 
 ------------------------------------
 
-Persy can handle large repositorys quite well. The only problem is the initial pull from or push to a remote repository. This may take a very long time, depending on the size of your files. It might help to use a manual pull from a remote location. It is expected to be more stable this way. Please take a look at the "Manual pull from a remote repository" paragraph if you want to perform this. 
+Persy peut gérer correctement de grands dépôts. Le seul problème est la synchronisation initiale à partir ou depuis un dépôt distant. Selon la taille de vos fichiers, cela peut prendre très longtemps. Il pourrait être plus efficace d'utiliser un autre moyen pour initialiser la synchronisation à partir, ou vers un dépôt distant. Le fonctionnement devrait être plus stable de cette façon. Merci de lire le paragraphe "Initialiser manuellement depuis un dépôt distant" si vous envisagez de faire cela.
 
-Manual pull from a remote repository
--------------------------------------
+Initialiser manuellement depuis un dépôt distant
+--------------------------------------------------
 
-To get a local checkout / backup from a remote repository you have start a terminal and switch into a "persy" environment. After you did this, you can make the git pull:
+Pour obtenir localement une extraction à partir d'un dépôt distant, vous devez lancer un terminal et passer dans l'environnement de Persy. Après avoir fait cela, vous pouvez récupérer votre copie locale par un git pull :
 
 .. code-block:: bash
   :linenos:
@@ -52,5 +51,5 @@ To get a local checkout / backup from a remote repository you have start a termi
    . persy --setenv
    git pull origin master
 
-This may take a long time depending on the size of your repostiory and can be usefull when the repository is to big to pull with persy or you dont have a graphical interface. 
+Cela peut prendre longtemps selon la taille de votre dépôt et peut être utile lorsqu'il est trop gros pour être descendu avec Persy; ou si vous ne disposez pas d'une interface graphique.
 
